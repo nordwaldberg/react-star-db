@@ -1,32 +1,73 @@
 import React from 'react';
 import './RandomPlanet.css';
+import swapiService from '../../services/SwapiService';
+import Loader from '../Loader';
+
 
 export default class RandomPlanet extends React.Component {
+    constructor() {
+        super();
+        this.updatePlanet();
+        this.state = {
+            planet: {},
+            loading: true,
+        };
+    };
+
+    swapiService = new swapiService();
+
+    onPlanetLoaded = (planet) => {
+        this.setState({
+            planet,
+            loading: false,
+        });
+    }
+
+    updatePlanet() {
+        const id = Math.floor((Math.random()*25) + 2);
+        this.swapiService.getPlanet(id).then(this.onPlanetLoaded);
+    };
 
     render() {
+
+        const { planet, loading} = this.state;  
+
+        const loader = loading ? <Loader/> : null;
+        const content = !loading ? <PlanetView planet={ planet }/> : null;
+        
         return (
             <div className="random-planet jumbotron rounded">
-                <img className="planet-image"
-                    src="https://starwars-visualguide.com/assets/img/planets/5.jpg" alt=""/>
+                {loader}
+                {content}
+            </div>
+        );
+    };
+};
+
+const PlanetView = ({ planet }) => {
+    const { id, name, population, rotationPeriod, diameter } = planet;
+
+    return (
+        <React.Fragment>
+            <img className="planet-image"
+                    src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="" />
                 <div>
-                    <h4 className="planet-name">Planet Name</h4>
+                    <h4>{name}</h4>
                     <ul className="list-group list-group-flush">
                         <li className="list-group-item">
                             <span className="term">Population:</span>
-                            <span>123124</span>
+                            <span>{population}</span>
                         </li>
                         <li className="list-group-item">
                             <span className="term">Rotation Period:</span>
-                            <span>43</span>
+                            <span>{rotationPeriod}</span>
                         </li>
                         <li className="list-group-item">
                             <span className="term">Diameter:</span>
-                            <span>100</span>
+                            <span>{diameter}</span>
                         </li>
                     </ul>
-                </div>
-            </div>
-
-        );
-    }
-}
+                </div>    
+        </React.Fragment>
+    );
+};
