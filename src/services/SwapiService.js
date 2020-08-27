@@ -6,7 +6,7 @@ export default class SwapiService {
     const res = await fetch(`${this._apiBase}${url}`);
     if (!res.ok) {
       throw new Error(`Could not fetch ${url}, received ${res.status}`);
-    }
+    };
     const body = await res.json();
     return body;
   };
@@ -42,11 +42,11 @@ export default class SwapiService {
   };
 
   _extractId(item) {
-    const idRegExp = /\/([0-9]*)\/$/;
+    const idRegExp = /\/(\d*)\/$/;
     return item.url.match(idRegExp)[1];
-  };
+  };      
 
-  _transformPlanetData(planet) {
+  _transformPlanetData = (planet) => {
     return {
       id: this._extractId(planet),
       name: planet.name,
@@ -56,7 +56,7 @@ export default class SwapiService {
     };
   };
 
-  _transformPersonData(person) {
+  _transformPersonData = (person) => {
     return {
       id: this._extractId(person),
       name: person.name,
@@ -70,7 +70,7 @@ export default class SwapiService {
     };
   };
 
-  _transformStarshipData(starship) {
+  _transformStarshipData = (starship) => {
     return {
       id: this._extractId(starship),
       name: starship.name,
