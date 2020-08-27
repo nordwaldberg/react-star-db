@@ -11,40 +11,43 @@ export default class ItemList extends React.Component {
     constructor() {
         super();
         this.state = {
-            peopleList: null,
+            itemList: null,
         };
     };
 
     componentDidMount() {
-        this.swapiService.getAllPersons()
-            .then(peopleList => {
+        const { getData } = this.props;
+        getData()
+            .then(itemList => {
                 this.setState({
-                    peopleList,
+                    itemList,
                 });
             });
-    }
+    };
 
     renderItems(arr) {
-        return arr.map(({id, name}) => {
+        return arr.map(item => {
+            const { id } = item;
+            const label = this.props.renderItem(item);
             return (
                 <li className="list-group-item"
                     key={id}
                     onClick={() => this.props.onItemSelected(id)}
                 >
-                    {name}</li>
+                    {label}</li>
             );
         });
     };
 
     render() {
 
-        const { peopleList } = this.state;
+        const { itemList } = this.state;
 
-        if (!peopleList) {
+        if (!itemList) {
             return <Loader />;
         };
 
-        const items = this.renderItems(peopleList);
+        const items = this.renderItems(itemList);
 
         return (
             <ul className="item-list list-group">

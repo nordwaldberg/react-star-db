@@ -2,14 +2,18 @@ import React from 'react';
 import './PeoplePage.css';
 import ItemList from '../ItemList';
 import PersonDetails from '../PersonDetails';
-import ErrorIndicator from '../ErrorIndicator/ErrorIndicator';
+import ErrorIndicator from '../ErrorIndicator';
+import ErrorBoundry from '../ErrorBoundry';
+import Row from '../Row';
+import SwapiService from '../../services/SwapiService';
+
 
 export default class PeoplePage extends React.Component {
+    swapiService = new SwapiService();
     constructor() {
         super();
         this.state = {
             selectedPerson: null,
-            hasError: false,
         };
     };
 
@@ -19,25 +23,26 @@ export default class PeoplePage extends React.Component {
         });
     };
 
-    componentDidCatch() {
-        this.setState({ hasError: true });
-    };
-
     render() {
+
+        const itemList = (
+            <ItemList onItemSelected={this.onPersonSelected}
+                getData={this.swapiService.getAllPersons}
+                renderItem={item => item.name} />
+        );
+        
+        const personDetails = (
+            <PersonDetails personId={this.state.selectedPerson} />
+        );
 
         if (this.state.hasError) {
             return <ErrorIndicator />
         };
 
         return (
-            <div className="row mb-2">
-                <div className="col-md-6">
-                    <ItemList onItemSelected={this.onPersonSelected} />
-                </div>
-                <div className="col-md-6">
-                    <PersonDetails personId={this.state.selectedPerson} />
-                </div>
-            </div>
+            <ErrorBoundry>
+                <Row left={itemList} right={personDetails}/>
+            </ErrorBoundry>
         );
     }
 };
