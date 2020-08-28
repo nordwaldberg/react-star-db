@@ -1,6 +1,5 @@
 import React from 'react';
 import Loader from '../Loader';
-import ErrorIndicator from '../ErrorIndicator'
 
 const withData = (View, getData) => {
     return class extends React.Component {
@@ -13,10 +12,9 @@ const withData = (View, getData) => {
         };
 
         componentDidMount() {
-            getData()
-                .then((data) => {
+            getData().then((data) => {
                     this.setState({
-                        data
+                        data,
                     });
                 });
         };
