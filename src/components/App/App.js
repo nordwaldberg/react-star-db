@@ -1,8 +1,9 @@
 import React from 'react';
+import { SwapiServiceProvider } from '../SwapiServiceContext';
+import SwapiService from '../../services/SwapiService';
 import Header from '../Header';
 import RandomPlanet from '../RandomPlanet';
 import PeoplePage from '../PeoplePage';
-import SwapiService from '../../services/SwapiService';
 import Row from '../Row';
 import ErrorIndicator from '../ErrorIndicator';
 import ErrorBoundry from '../ErrorBoundry';
@@ -13,7 +14,7 @@ import { PersonsDetails, PlanetsDetails, StarshipsDetails } from '../SWComponent
 export default class App extends React.Component {
 
   swapiService = new SwapiService();
-  
+
   constructor() {
     super();
     this.state = {
@@ -33,12 +34,14 @@ export default class App extends React.Component {
 
     return (
       <ErrorBoundry>
-        <div>
-          <Header />
-          <RandomPlanet />
-          <PersonsList />
-          <StarshipsDetails itemId={5}/>
-        </div>
+        <SwapiServiceProvider value={this.swapiService}>
+          <div>
+            <Header />
+            <RandomPlanet />
+            <PersonsList />
+            <StarshipsDetails itemId={5} />
+          </div>
+        </SwapiServiceProvider>
       </ErrorBoundry>
     );
   };
