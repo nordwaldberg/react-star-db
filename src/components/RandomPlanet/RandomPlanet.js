@@ -14,11 +14,28 @@ export default class RandomPlanet extends React.Component {
         };
     };
 
+    static defaultProps = {
+        updateTime: 2500
+    };
+
+    static propTypes = {
+        updateTime: (props, propName, componentName) => {
+            const value = props[propName];
+
+            if (typeof value === 'number' && !isNaN(value)) {
+                return null;
+            };
+
+            return new TypeError(`${componentName}: ${propName} should be a number`);
+        }
+    };
+
     swapiService = new swapiService();
 
     componentDidMount() {
+        const { updateTime } = this.props;
         this.updatePlanet();
-        this.interval = setInterval(this.updatePlanet, 2500);
+        this.interval = setInterval(this.updatePlanet, updateTime);
     };
 
     componentWillUnmount() {
