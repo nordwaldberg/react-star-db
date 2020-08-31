@@ -6,14 +6,10 @@ import TestSwapiService from '../../services/TestSwapiService';
 
 import Header from '../Header';
 import RandomPlanet from '../RandomPlanet';
-import PeoplePage from '../PeoplePage';
-import Row from '../Row';
 
-import ErrorIndicator from '../ErrorIndicator';
 import ErrorBoundry from '../ErrorBoundry';
 
-import { PersonsList, PlanetsList, StarshipsList } from '../SWComponents/';
-import { PersonsDetails, PlanetsDetails, StarshipsDetails } from '../SWComponents';
+import { PersonsPage, PlanetsPage, StarshipsPage } from '../Pages';
 
 
 export default class App extends React.Component {
@@ -21,7 +17,6 @@ export default class App extends React.Component {
   constructor() {
     super();
     this.state = {
-      hasError: false,
       swapiService: new SwapiService(),
     };
   };
@@ -41,19 +36,15 @@ export default class App extends React.Component {
   };
 
   render() {
-
-    if (this.state.hasError) {
-      return <ErrorIndicator />;
-    };
-
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.state.swapiService}>
           <div>
             <Header onServiceChange={this.onServiceChange}/>
             <RandomPlanet />
-            <StarshipsDetails itemId={5} />
-            <PersonsList />
+            <PersonsPage/>
+            <PlanetsPage/>
+            <StarshipsPage/>
           </div>
         </SwapiServiceProvider>
       </ErrorBoundry>

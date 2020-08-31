@@ -1,5 +1,6 @@
 import React from 'react';
 import Loader from '../Loader';
+import ErrorIndicator from '../ErrorIndicator';
 
 const withData = (View) => {
     return class extends React.Component {
@@ -8,6 +9,8 @@ const withData = (View) => {
             super();
             this.state = {
                 data: null,
+                loading: true,
+                error: false,
             };
         };
 
@@ -22,19 +25,34 @@ const withData = (View) => {
         }
 
         update() {
+            this.setState({
+                loading: true,
+                error: false,
+            });
+            
             this.props.getData()
                 .then((data) => {
                     this.setState({
-                        data
+                        data,
+                        loading: false,
+                    });
+                }).catch(() => {
+                    this.setState({
+                        error: true,
+                        loading: false,
                     });
                 });
         }
 
         render() {
-            const { data } = this.state;
+            const { data, loading, error } = this.state;
 
-            if (!data) {
+            if (loading) {
                 return <Loader />;
+            };
+
+            if (error) {
+                return <ErrorIndicator/>
             };
 
             return <View {...this.props} data={data} />;
