@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import { SwapiServiceProvider } from '../SwapiServiceContext';
 import SwapiService from '../../services/SwapiService';
@@ -11,6 +11,7 @@ import RandomPlanet from '../RandomPlanet';
 import ErrorBoundry from '../ErrorBoundry';
 
 import { PersonsPage, PlanetsPage, StarshipsPage } from '../Pages';
+import { StarshipsDetails, PersonsDetails } from '../SWComponents';
 
 
 export default class App extends React.Component {
@@ -43,15 +44,26 @@ export default class App extends React.Component {
           <Router>
             <div>
               <Header onServiceChange={this.onServiceChange} />
-              <Route path="/"
-                render={() => <div>
-                  <RandomPlanet />
-                  <h2>Welcome to StarDB!</h2>
-                </div>}
-                exact />
-              <Route path="/characters" component={PersonsPage} />
-              <Route path="/planets" component={PlanetsPage} />
-              <Route path="/starships" component={StarshipsPage} />
+              <Switch>
+                <Route path="/"
+                  render={() => <div>
+                    <RandomPlanet />
+                    <h2>Welcome to StarDB!</h2>
+                  </div>}
+                  exact />
+                <Route path="/characters" component={PersonsPage} exact />
+                <Route path="/characters/:id" render={({ match }) => {
+                  const { id } = match.params;
+                  return <PersonsDetails itemId={id} />;
+                }} />
+                <Route path="/planets/:id?" component={PlanetsPage} />
+                <Route path="/starships" component={StarshipsPage} exact />
+                <Route path="/starships/:id" render={({ match }) => {
+                  const { id } = match.params;
+                  return <StarshipsDetails itemId={id} />;
+                }} />
+                <Route render={() => <h2>Page not found!</h2>}/>
+              </Switch>
             </div>
           </Router>
         </SwapiServiceProvider>
