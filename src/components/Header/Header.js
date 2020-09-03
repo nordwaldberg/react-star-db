@@ -1,27 +1,27 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 const Header = ({ onServiceChange }) => {
     return (
         <div className="header d-flex">
             <h3>
-                <a href="#g">Star DB</a>
+                <Link to="/">Star DB</Link>
             </h3>
             <ul className="d-flex">
                 <li>
-                    <a  href="#f">Characters</a>
+                    <Link  to="/characters">Characters</Link>
                 </li>
                 <li>
-                    <a href="#d">Planets</a>
+                    <Link to="/planets">Planets</Link>
                 </li>
                 <li>
-                    <a href="#a">Starships</a>
+                    <Link to="/starships">Starships</Link>
                 </li>
             </ul>
             <button 
                 className="btn btn-primary btn-sm" 
-                onClick={onServiceChange}>
-            Change Service</button>
+                onClick={onServiceChange}>Change Service</button>
         </div>
     );
 };
