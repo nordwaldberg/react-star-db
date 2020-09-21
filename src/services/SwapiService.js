@@ -66,7 +66,12 @@ export default class SwapiService {
       population: planet.population,
       rotationPeriod: planet.rotation_period,
       diameter: planet.diameter,
-    };
+      orbitalPeriod: planet.orbital_period,
+      gravity: planet.gravity,
+      climate: planet.climate,
+      terrain: planet.terrain,
+      water: planet.surface_water,
+    }; 
   };
 
   _transformPersonData = (person) => {
@@ -93,8 +98,10 @@ export default class SwapiService {
       crew: starship.crew,
       passengers: starship.passengers,
       costInCredits: starship.cost_in_credits,
-      cargoCapacity: starship.cargo_capacity,
       starshipClass: starship.starship_class,
+      maxAtmoSpeed: starship.max_atmosphering_speed,
+      hyperdriveRating: starship.hyperdrive_rating,
+      pilots: starship.pilots,
     };
   };
 };

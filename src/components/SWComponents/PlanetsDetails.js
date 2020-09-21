@@ -6,8 +6,13 @@ const PlanetsDetails = (props) => {
     return (
         <ItemDetails {...props}>
             <Record field="diameter" label="Diameter:" />
-            <Record field="population" label="Population:" />
+            <Record field="gravity" label="Gravity:" />
             <Record field="rotationPeriod" label="Rotation Period:" />
+            <Record field="orbitalPeriod" label="Orbital Period:" />
+            <Record field="water" label="Water:" />
+            <Record field="population" label="Population:" />
+            <Record field="climate" label="Climate:" />
+            <Record field="terrain" label="Terrain:" />
         </ItemDetails>
     );
 };
