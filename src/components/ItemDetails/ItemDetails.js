@@ -55,7 +55,7 @@ export default class ItemDetails extends React.Component {
 
 
         if (!item) {
-            return <span>Select a character from a list</span>;
+            return <p className="empty-details"></p>;
         };
 
         const { name } = item;

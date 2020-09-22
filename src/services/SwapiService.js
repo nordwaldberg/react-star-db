@@ -83,7 +83,7 @@ export default class SwapiService {
       eyeColor: person.eye_color,
       hairColor: person.hair_color,
       skinColor: person.skin_color,
-      heigth: person.height,
+      height: person.height,
       mass: person.mass,
     };
   };
