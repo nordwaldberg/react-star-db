@@ -5,3 +5,7 @@ ul.item-list.list-group  {
 .item-list .list-group-item:hover {
   background-color: #444;
 }
+
+.list-elem {
+  cursor: pointer;
+}

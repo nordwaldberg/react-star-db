@@ -10,7 +10,7 @@ const ItemList = (props) => {
         const { id } = item;
         const label = renderLabel(item);
         return (
-            <li className="list-group-item"
+            <li className="list-group-item list-elem"
                 key={id}
                 onClick={() => onItemSelected(id)}>
                 {label}
