@@ -47,7 +47,7 @@ export default class App extends React.Component {
             <div>
               <Header onServiceChange={this.onServiceChange} />
               <Switch>
-                <Route path="/"
+                <Route path={`${process.env.PUBLIC_URL}/`}
                   render={() => <div>
                     <RandomPlanet />
                     <p className="main-text">
@@ -71,14 +71,14 @@ export default class App extends React.Component {
                     <p className="main-text">— From Wikipedia, the free encyclopedia</p>
                   </div>}
                   exact />
-                <Route path="/characters" component={PersonsPage} exact />
-                <Route path="/characters/:id" render={({ match }) => {
+                <Route path={`${process.env.PUBLIC_URL}/characters`} component={PersonsPage} exact />
+                <Route path={`${process.env.PUBLIC_URL}/characters/:id`} render={({ match }) => {
                   const { id } = match.params;
                   return <PersonsDetails itemId={id} />;
                 }} />
-                <Route path="/planets/:id?" component={PlanetsPage} />
-                <Route path="/starships" component={StarshipsPage} exact />
-                <Route path="/starships/:id" render={({ match }) => {
+                <Route path={`${process.env.PUBLIC_URL}/planets/:id?`} component={PlanetsPage} />
+                <Route path={`${process.env.PUBLIC_URL}/starships`} component={StarshipsPage} exact />
+                <Route path={`${process.env.PUBLIC_URL}/starships/:id`} render={({ match }) => {
                   const { id } = match.params;
                   return <StarshipsDetails itemId={id} />;
                 }} />
