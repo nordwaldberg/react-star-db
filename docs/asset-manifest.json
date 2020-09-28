@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/react-star-db/static/css/main.93d5f363.chunk.css",
+    "main.js": "/react-star-db/static/js/main.0e39600c.chunk.js",
+    "main.js.map": "/react-star-db/static/js/main.0e39600c.chunk.js.map",
+    "runtime-main.js": "/react-star-db/static/js/runtime-main.6fb8b739.js",
+    "runtime-main.js.map": "/react-star-db/static/js/runtime-main.6fb8b739.js.map",
+    "static/js/2.7fd45f73.chunk.js": "/react-star-db/static/js/2.7fd45f73.chunk.js",
+    "static/js/2.7fd45f73.chunk.js.map": "/react-star-db/static/js/2.7fd45f73.chunk.js.map",
+    "index.html": "/react-star-db/index.html",
+    "precache-manifest.3dde26b833a49507e9ffb15c94f6062c.js": "/react-star-db/precache-manifest.3dde26b833a49507e9ffb15c94f6062c.js",
+    "service-worker.js": "/react-star-db/service-worker.js",
+    "static/css/main.93d5f363.chunk.css.map": "/react-star-db/static/css/main.93d5f363.chunk.css.map",
+    "static/js/2.7fd45f73.chunk.js.LICENSE.txt": "/react-star-db/static/js/2.7fd45f73.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.6fb8b739.js",
+    "static/js/2.7fd45f73.chunk.js",
+    "static/css/main.93d5f363.chunk.css",
+    "static/js/main.0e39600c.chunk.js"
+  ]
+}
